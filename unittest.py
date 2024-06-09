@@ -92,7 +92,7 @@ def update_val_atPos_Test():
     assert dll.search(200) == True , "update field"
 
 
-def delete_from_beginnig():
+def delete_from_beginnig_Test():
     dll = doubly_linked_list()
     dll.insert_At_Beginning(5)
     dll.insert_At_Beginning(6)
@@ -103,6 +103,43 @@ def delete_from_beginnig():
     assert dll.search(13) == False , "delete field"
     dll.printLinkedLst()
 
+
+def delete_from_last_Test():
+    dll = doubly_linked_list()
+    dll.insert_At_Beginning(5)
+    dll.insert_At_Beginning(6)
+    dll.insert_At_Beginning(7)
+    dll.insert_At_Beginning(13)
+    dll.insert_At_end(55)
+    dll.printLinkedLst()
+    dll.deleteFromLast()
+    assert dll.search(55) == False , "delete field"
+    dll.printLinkedLst()
+
+def delete_given_element_Test():
+    dll = doubly_linked_list()
+    dll.insert_At_Beginning(5)
+    dll.insert_At_Beginning(6)
+    dll.insert_At_Beginning(7)
+    dll.insert_At_Beginning(13)
+    dll.insert_At_end(20)
+    dll.printLinkedLst()
+    dll.delete_given_element(7)
+    dll.delete_given_element(13)
+    assert dll.search(55) == False , "delete field"
+    dll.printLinkedLst()
+
+def delete_given_index_Test():
+    dll = doubly_linked_list()
+    dll.insert_At_Beginning(5)
+    dll.insert_At_Beginning(6)
+    dll.insert_At_Beginning(7)
+    dll.insert_At_Beginning(13)
+    dll.insert_At_end(20)
+    dll.printLinkedLst()
+    dll.delete_given_pos(3)
+    dll.printLinkedLst()    
+    
 isEmpty_Test()
 length_test()
 search_test()
@@ -112,4 +149,7 @@ insert_after_an_element_Test()
 insert_at_position_Test()
 update_val_Test()
 update_val_atPos_Test()
-delete_from_beginnig()
+delete_from_beginnig_Test()
+delete_from_last_Test()
+delete_given_element_Test()
+delete_given_index_Test()

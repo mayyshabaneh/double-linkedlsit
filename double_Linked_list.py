@@ -134,3 +134,68 @@ class doubly_linked_list:
         else :
             self.head = self.head.next
             self.head.previous = None
+
+
+    def deleteFromLast(self):
+        if self.isEmpty():
+            print("linked list is empty")
+        elif self.head.next is None :
+            self.head = None
+        else :
+            temp = self.head
+            while temp.next != None :
+                temp = temp.next
+            temp.previous.next = None
+            temp.previous = None
+
+
+
+    def delete_given_element(self, val):
+
+        if self.isEmpty():
+            print("Linked list is empty")
+        elif self.head.data == val:
+            self.head = self.head.next
+            if self.head is not None:
+                self.head.previous = None
+        else:
+            temp = self.head
+            while temp is not None:
+                if temp.data == val:
+                    break
+                temp = temp.next
+            if temp is None:
+                print("Element not found")
+            elif temp.next is None:
+                temp.previous.next = None
+                temp.previous = None
+            else:
+                temp.previous.next = temp.next
+                temp.next.previous = temp.previous
+                temp.next = None
+                temp.previous = None
+
+    def delete_given_pos(self, pos):
+        if self.isEmpty():
+            print("Linked list is empty")
+        elif pos == 1:
+            self.deleteFromBeginnig()
+        else:
+            temp = self.head
+            count = 1
+            while temp is not None:
+                if count == pos:
+                    break
+                count += 1
+                temp = temp.next
+            if temp is None:
+                print("No element at position", pos)
+            elif temp.next is None:
+                self.deleteFromLast()
+                temp.previous.next = None
+                temp.previous = None
+            else:
+                temp.previous.next = temp.next
+                temp.next.previous = temp.previous
+                temp.next = None
+                temp.previous = None
