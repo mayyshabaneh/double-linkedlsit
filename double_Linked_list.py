@@ -31,21 +31,42 @@ class doubly_linked_list:
             new_node.previous = temp
 
 
-    def insert_After_Element(self,value,element):
+    def insert_After_Element(self, value, element):
         temp = self.head
-        while temp != None:
+        while temp is not None:
             if temp.data == element:
                 break
             temp = temp.next
-        if temp == None:
-            print("element not found ")
-        else :
+        if temp is None:
+            print("Element not found")
+        else:
+            new_node = Node(value)
+            new_node.next = temp.next
+            if temp.next is not None:
+                temp.next.previous = new_node
+            new_node.previous = temp
+            temp.next = new_node
+
+    def insert_At_Position(self, value, pos):
+        temp = self.head
+        count = 0
+        while temp is not None:
+            if count == pos - 1:
+                break
+            count += 1
+            temp = temp.next
+        if pos == 1:
+            self.insert_At_Beginning(value)
+        elif temp is None:
+            print("cannot add element here")
+        elif temp.next is None:
+            self.insert_At_end(value)
+        else:
             new_node = Node(value)
             new_node.next = temp.next
             new_node.previous = temp
             temp.next.previous = new_node
             temp.next = new_node
-
 
     def isEmpty(self):
         if self.head is None :
@@ -73,5 +94,43 @@ class doubly_linked_list:
         return isFound
 
 
+    def printLinkedLst(self):
+        temp = self.head
+        while temp != None :
+            print(temp.data , end=" <--> ")
+            temp = temp.next
+        print("None")
     
-        
+    def updateElement(self,oldval , newval):
+        temp = self.head
+        isUpdate = False
+        while temp != None : 
+            if temp.data == oldval:
+                temp.data = newval
+                isUpdate = True
+            temp = temp.next
+
+    def updateAtPosition(self,value,pos):
+
+        temp = self.head
+        count = 0
+        while temp != None:
+            if count == pos:
+                break
+            count +=1
+            temp = temp.next
+        if temp is None :
+            print("cannot update")
+        else :
+            temp.data = value
+            print ("value updated")
+
+
+    def deleteFromBeginnig(self):
+        if self.head is None:
+            print("linked list is empty")
+        elif self.head.next is None :
+            self.head = None
+        else :
+            self.head = self.head.next
+            self.head.previous = None
